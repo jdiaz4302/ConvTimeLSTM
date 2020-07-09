@@ -1,0 +1,3 @@
+04 notebooks are the first containing new model development
+04_01 applies weights to the time-defining bands via scalar multiplication
+04_02 applies weights to the time-defining bands via convolution

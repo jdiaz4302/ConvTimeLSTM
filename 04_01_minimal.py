@@ -3,6 +3,10 @@
 
 
 
+# Input that may vary
+batch_size = 16 # originally 64 for 4 GPUs
+
+
 # Libraries
 import numpy as np
 import matplotlib.pyplot as plt
@@ -80,7 +84,6 @@ training_set = train_Dataset(x,
 validation_set = validation_Dataset(x_validation,
                                     y_validation,
                                     data_indices=range(y_validation.shape[0]))
-batch_size = 64
 train_loader = torch.utils.data.DataLoader(dataset = training_set,
                                            batch_size = batch_size,
                                            shuffle = True)

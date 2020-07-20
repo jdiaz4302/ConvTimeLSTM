@@ -9,8 +9,8 @@ class train_Dataset(data.Dataset):
     'Characterizes a dataset for PyTorch'
     def __init__(self, x, y, data_indices):
         'Initialization'
-	self.x = x
-	self.y = y
+        self.x = x
+        self.y = y
         self.data_indices = data_indices
     
     def __len__(self):
@@ -33,8 +33,8 @@ class validation_Dataset(data.Dataset):
     'Characterizes a dataset for PyTorch'
     def __init__(self, x_validation, y_validation, data_indices):
         'Initialization'
-	self.x_validation = x_validation
-	self.y_validation = y_validation
+        self.x_validation = x_validation
+        self.y_validation = y_validation
         self.data_indices = data_indices
     
     def __len__(self):

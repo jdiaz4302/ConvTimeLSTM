@@ -7,7 +7,7 @@ from torch.utils import data
 
 class train_Dataset(data.Dataset):
     'Characterizes a dataset for PyTorch'
-    def __init__(self, data_indices):
+    def __init__(self, x, y, data_indices):
         'Initialization'
         self.data_indices = data_indices
     
@@ -29,7 +29,7 @@ class train_Dataset(data.Dataset):
     
 class validation_Dataset(data.Dataset):
     'Characterizes a dataset for PyTorch'
-    def __init__(self, data_indices):
+    def __init__(self, x_validation, y_validation, data_indices):
         'Initialization'
         self.data_indices = data_indices
     

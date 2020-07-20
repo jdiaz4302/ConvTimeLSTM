@@ -53,16 +53,16 @@ width = x.shape[4]
 
 
 # Set model hyperparameters
-conv_time_lstm = ConvTime_LSTM(input_size = (height,
-                                             width),
-                               input_dim = channels,
-                               hidden_dim = [128, 64, 64, 1],
-                               kernel_size = (5, 5),
-                               num_layers = 4,
-                               batch_first = True,
-                               bias = True,
-                               return_all_layers = False,
-                               GPU = True)
+conv_time_lstm = ConvTime_LSTM1(input_size = (height,
+                                              width),
+                                input_dim = channels,
+                                hidden_dim = [128, 64, 64, 1],
+                                kernel_size = (5, 5),
+                                num_layers = 4,
+                                batch_first = True,
+                                bias = True,
+                                return_all_layers = False,
+                                GPU = True)
 # Give it to the GPU
 conv_time_lstm.cuda()
 
@@ -74,8 +74,12 @@ optimizer = torch.optim.Adam(conv_time_lstm.parameters())
 
 
 # Pass our data to those classes
-training_set = train_Dataset(data_indices=range(y.shape[0]))
-validation_set = validation_Dataset(data_indices=range(y_validation.shape[0]))
+training_set = train_Dataset(x,
+                             y,
+                             data_indices=range(y.shape[0]))
+validation_set = validation_Dataset(x_validation,
+                                    y_validation,
+                                    data_indices=range(y_validation.shape[0]))
 batch_size = 64
 train_loader = torch.utils.data.DataLoader(dataset = training_set,
                                            batch_size = batch_size,

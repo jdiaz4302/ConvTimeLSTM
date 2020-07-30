@@ -4,7 +4,7 @@
 
 
 # Input that may vary
-batch_size = 16 # originally 64 for 4 GPUs
+batch_size = 64
 
 
 # Libraries

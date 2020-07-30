@@ -4,7 +4,7 @@
 
 
 # Input that may vary
-batch_size = 64
+batch_size = 84
 
 
 # Libraries

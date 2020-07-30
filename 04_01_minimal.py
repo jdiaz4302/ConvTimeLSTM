@@ -26,6 +26,7 @@ from QOL_Library.Dataset_Classes import train_Dataset, validation_Dataset
 # Marking the begin time
 print(datetime.datetime.now())
 
+print("importing data")
 
 # Import Moving MNIST
 Moving_MNIST = np.load('data/mnist_test_seq.npy')
@@ -43,6 +44,7 @@ Moving_MNIST_tensor = Moving_MNIST_tensor.unsqueeze(2)
 # Checking shape
 Moving_MNIST_tensor.shape
 
+print("processing data")
 
 # Train/validation split
 train_indices = np.random.choice(range(10000), size = 8000, replace = False)
@@ -54,6 +56,7 @@ validation_indices = np.random.choice(OutofSample_indices, size = 1000, replace 
 x, y = sep_x_y(Moving_MNIST_tensor[train_indices])
 x_validation, y_validation = sep_x_y(Moving_MNIST_tensor[validation_indices])
 
+print("setting up the model")
 
 # Picking one of the like-sequence tensors within the list to set parameters
 channels = x.shape[2]
@@ -81,6 +84,7 @@ conv_time_lstm.cuda()
 loss = torch.nn.MSELoss()
 optimizer = torch.optim.Adam(conv_time_lstm.parameters())
 
+print("facilitating parallel operations")
 
 # Pass our data to those classes
 training_set = train_Dataset(x,
@@ -104,6 +108,8 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 # Allow parallelization
 conv_time_lstm = torch.nn.DataParallel(conv_time_lstm)
 
+print("training loop")
+print(datetime.datetime.now())
 
 # Training loop
 loss_list = []
@@ -130,6 +136,7 @@ for i in range(epochs):
 
 
 # Marking the end time
+print("end of training loop")
 print(datetime.datetime.now())
 
 

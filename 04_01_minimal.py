@@ -8,6 +8,7 @@ batch_size = 16 # originally 64 for 4 GPUs
 
 
 # Libraries
+import datetime
 import numpy as np
 import matplotlib.pyplot as plt
 import torch
@@ -20,6 +21,10 @@ from QOL_Library.ConvTimeLSTM1 import ConvTime_LSTM1
 from QOL_Library.Separate_X_Y import sep_x_y
 # Formal PyTorch data set classes that increase hardware utilization
 from QOL_Library.Dataset_Classes import train_Dataset, validation_Dataset
+
+
+# Marking the begin time
+print(datetime.datetime.now())
 
 
 # Import Moving MNIST
@@ -122,5 +127,11 @@ for i in range(epochs):
         batch_loss.backward()
         optimizer.step()
     print('Epoch: ', i, '\n\tBatch loss: ', batch_loss.item(), '\n')
+
+
+# Marking the end time
+print(datetime.datetime.now())
+
+
 
 

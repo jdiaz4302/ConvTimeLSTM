@@ -21,6 +21,7 @@ from QOL_Library.ConvTimeLSTM1 import ConvTime_LSTM1
 from QOL_Library.Separate_X_Y import sep_x_y
 # Formal PyTorch data set classes that increase hardware utilization
 from QOL_Library.Dataset_Classes import train_Dataset, validation_Dataset
+import nvidia_smi
 
 
 # Marking the begin time
@@ -133,6 +134,12 @@ for i in range(epochs):
         batch_loss.backward()
         optimizer.step()
     print('Epoch: ', i, '\n\tBatch loss: ', batch_loss.item(), '\n')
+    # Printing gpu perf
+    nvidia_smi.nvmlInit()
+    for gpu_core in range(4):
+        handle = nvidia_smi.nvmlDeviceGetHandleByIndex(gpu_core)
+        res = nvidia_smi.nvmlDeviceGetUtilizationRates(handle)
+        print(f'gpu: {res.gpu}%, gpu-mem: {res.memory}%')
 
 
 # Marking the end time
